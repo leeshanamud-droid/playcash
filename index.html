@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>PlayCash — Turn Your Free Time Into Rewards</title>
+  <meta name="description" content="Play games, complete offers, and unlock rewards from your phone. Get started free with PlayCash.">
+  <meta property="og:title" content="PlayCash — Turn Your Free Time Into Rewards">
+  <meta property="og:description" content="Play games, complete offers, and unlock rewards from your phone.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#150829">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #1c1917;
+      --qual-ink: #232231;
+      --qual-subtle: #73738c;
+      --qual-line: #e6e6ef;
+      --qual-pink: #e11d68;
+      --qual-green: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--background);
+      color: var(--qual-ink);
+      overflow-x: hidden;
+    }
+
+    /* Step 1 & 2: Qualification Survey */
+    .qual-page {
+      min-height: 100dvh;
+      background: #ffffff;
+      color: var(--qual-ink);
+    }
+    .qual-shell {
+      min-height: 100dvh;
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+    .qual-topbar {
+      height: 110px;
+      flex: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 36px 18px 0;
+      background: linear-gradient(to bottom, #d1d5db, #f3f4f6 55%, #ffffff);
+    }
+    .qual-nav-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ffffff;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .qual-nav-button svg {
+      width: 28px;
+      height: 28px;
+      stroke-width: 2.2;
+    }
+    .qual-more {
+      width: 26px;
+      height: 26px;
+      color: #ffffff;
+      stroke-width: 3;
+      margin-top: 5px;
+    }
+    .qual-intro {
+      text-align: center;
+      padding: 36px 20px 20px;
+    }
+    .qual-intro h1 {
+      font-size: 22px;
+      line-height: 1.3;
+      font-weight: 750;
+      color: #18181b;
+    }
+    .qual-intro p {
+      margin-top: 8px;
+      font-size: 16px;
+      color: var(--qual-subtle);
+    }
+    .qual-content {
+      margin: 0 20px;
+      padding-top: 28px;
+      border-top: 1px solid var(--qual-line);
+      flex: 1;
+    }
+    .qual-content h2 {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 19px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: #18181b;
+    }
+    .qual-info-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px;
+      color: var(--qual-subtle);
+      display: inline-flex;
+      align-items: center;
+    }
+    .qual-fieldset {
+      margin-top: 32px;
+      border: none;
+    }
+    .qual-fieldset legend {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #18181b;
+      margin-bottom: 6px;
+    }
+    .qual-options {
+      display: flex;
+      flex-direction: column;
+    }
+    .qual-option {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--qual-line);
+      font-size: 17px;
+      font-weight: 500;
+      color: #18181b;
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      width: 100%;
+      text-align: left;
+      padding: 0 4px;
+    }
+    .qual-radio {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #cbd5e1;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .qual-option.selected .qual-radio {
+      border-color: var(--qual-pink);
+    }
+    .qual-radio-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--qual-pink);
+      display: none;
+    }
+    .qual-option.selected .qual-radio-dot {
+      display: block;
+    }
+    .qual-footer {
+      margin-top: auto;
+      border-top: 1px solid var(--qual-line);
+      padding: 16px 20px max(24px, env(safe-area-inset-bottom));
+      background: #ffffff;
+    }
+    .qual-privacy {
+      color: var(--qual-subtle);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+    .qual-privacy-link {
+      background: none;
+      border: none;
+      color: #18181b;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: inherit;
+      padding: 0;
+    }
+    .qual-submit {
+      width: 100%;
+      height: 50px;
+      border-radius: 8px;
+      background: var(--qual-pink);
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, filter 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qual-submit:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      filter: grayscale(0.5);
+    }
+    .qual-submit:not(:disabled):hover {
+      filter: brightness(0.95);
+    }
+
+    /* Success qualification screen */
+    .qual-success {
+      flex: 1;
+      text-align: center;
+      padding: 40px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .qual-check {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 24px;
+      background: #ecfdf5;
+      color: var(--qual-green);
+      border: 3px solid #a7f3d0;
+    }
+    .qual-check svg {
+      width: 42px;
+      height: 42px;
+      stroke-width: 3;
+    }
+    .qual-success h1 {
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 800;
+      color: #18181b;
+    }
+    .qual-success p {
+      margin-top: 10px;
+      color: var(--qual-subtle);
+      font-size: 16px;
+    }
+
+    /* Modal / Dialog */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal-card {
+      background: #ffffff;
+      border-radius: 16px;
+      max-width: 380px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .modal-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #18181b;
+      margin-bottom: 8px;
+    }
+    .modal-card p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #52525b;
+      margin-bottom: 20px;
+    }
+    .modal-card button {
+      width: 100%;
+      height: 42px;
+      background: #18181b;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* Step 3: PlayCash Rewards Page */
+    .pc-page {
+      display: none;
+      min-height: 100vh;
+      background: radial-gradient(900px 600px at 85% 0%, rgba(94, 25, 114, 0.55) 0%, transparent 60%),
+                  radial-gradient(800px 700px at 0% 22%, rgba(189, 31, 98, 0.28) 0%, transparent 55%),
+                  radial-gradient(900px 700px at 50% 110%, rgba(47, 43, 133, 0.3) 0%, transparent 60%),
+                  #150829;
+      color: #f8fafc;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .pc-display {
+      font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+    }
+    .pc-glass {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .pc-gradient-text {
+      background: linear-gradient(92deg, #ff5fa2 0%, #a855f7 48%, #22d3ee 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .pc-btn-glow {
+      background: linear-gradient(92deg, #ff4d9d 0%, #a855f7 55%, #22d3ee 130%);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                  0 0 42px rgba(236, 72, 153, 0.55),
+                  0 0 90px rgba(168, 85, 247, 0.35);
+      animation: pc-glow 2.4s ease-in-out infinite;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .pc-btn-glow:hover {
+      transform: translateY(-2px) scale(1.02);
+      filter: brightness(1.1);
+    }
+    .pc-btn-glow:active {
+      transform: scale(0.98);
+    }
+    @keyframes pc-glow {
+      0%, 100% {
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                    0 0 42px rgba(236, 72, 153, 0.55),
+                    0 0 90px rgba(168, 85, 247, 0.35);
+      }
+      50% {
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+                    0 0 64px rgba(236, 72, 153, 0.75),
+                    0 0 120px rgba(168, 85, 247, 0.5);
+      }
+    }
+    .pc-coin {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 32% 30%, #ffe38a 0%, #f7b733 55%, #b8720c 100%);
+      box-shadow: 0 0 24px rgba(247, 183, 51, 0.45),
+                  inset 0 -3px 6px rgba(120, 70, 0, 0.55),
+                  inset 0 3px 6px rgba(255, 255, 255, 0.5);
+      animation: pc-float 5s ease-in-out infinite;
+      pointer-events: none;
+      user-select: none;
+    }
+    .pc-coin--slow { animation-duration: 7s; }
+    @keyframes pc-float {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(-18px) rotate(8deg); }
+    }
+    .pc-progress-fill {
+      background: linear-gradient(90deg, #ff4d9d, #a855f7, #22d3ee);
+      box-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
+      transition: width 0.6s ease;
+    }
+    .pc-faq summary {
+      cursor: pointer;
+      list-style: none;
+    }
+    .pc-faq summary::-webkit-details-marker {
+      display: none;
+    }
+    .pc-faq summary .pc-chevron {
+      transition: transform 0.25s ease;
+    }
+    .pc-faq details[open] summary .pc-chevron {
+      transform: rotate(180deg);
+    }
+    .pc-reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .pc-reveal.pc-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .pc-fade-in {
+      animation: pc-fade-up 0.8s ease-out both;
+    }
+    @keyframes pc-fade-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pc-coin, .pc-btn-glow, .pc-fade-in { animation: none; }
+      .pc-reveal { opacity: 1; transform: none; transition: none; }
+    }
+    @media (min-width: 600px) {
+      .qual-shell {
+        border-left: 1px solid var(--qual-line);
+        border-right: 1px solid var(--qual-line);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STEP 1: DEVICE SELECTION -->
+  <div id="step-device" class="qual-page">
+    <div class="qual-shell">
+      <div class="qual-topbar">
+        <button type="button" class="qual-nav-button" id="btn-close-device" aria-label="Skip to PlayCash">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <svg class="qual-more" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+      </div>
+
+      <div class="qual-intro">
+        <h1>Start Here</h1>
+        <p>Fill out the form to continue</p>
+      </div>
+
+      <main class="qual-content">
+        <h2>
+          Complete Below To Continue
+          <button type="button" class="qual-info-btn" id="btn-info" aria-label="About this device check">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4m0-4h.01"/></svg>
+          </button>
+        </h2>
+
+        <fieldset class="qual-fieldset">
+          <legend>Which Device Are You Using?</legend>
+          <div role="radiogroup" aria-label="Which device are you using?" class="qual-options">
+            <button type="button" role="radio" aria-checked="false" class="qual-option" data-device="iPhone">
+              <span>iPhone</span>
+              <span class="qual-radio"><span class="qual-radio-dot"></span></span>
+            </button>
+            <button type="button" role="radio" aria-checked="false" class="qual-option" data-device="Android">
+              <span>Android</span>
+              <span class="qual-radio"><span class="qual-radio-dot"></span></span>
+            </button>
+          </div>
+        </fieldset>
+      </main>
+
+      <div class="qual-footer">
+        <p class="qual-privacy">
+          By tapping Submit, you agree to continue.
+          <button type="button" class="qual-privacy-link" id="btn-privacy">Learn more</button>
+        </p>
+        <button type="button" class="qual-submit" id="btn-submit-device" disabled>Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: QUALIFIED SCREEN -->
+  <div id="step-qualified" class="qual-page" style="display: none;">
+    <div class="qual-shell">
+      <div class="qual-topbar">
+        <button type="button" class="qual-nav-button" id="btn-back-qualified" aria-label="Back to device check">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <svg class="qual-more" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+      </div>
+
+      <main class="qual-success">
+        <div class="qual-check" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h1>Congrats! You qualify!</h1>
+        <p>Tap the button below to get started</p>
+      </main>
+
+      <div class="qual-footer">
+        <button type="button" class="qual-submit" id="btn-get-started">Get Started</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+  <div id="modal-info" class="modal-backdrop">
+    <div class="modal-card">
+      <h3>About this step</h3>
+      <p>Choose the device you use to continue to PlayCash. Your selection stays on this page.</p>
+      <button type="button" class="modal-close">Got it</button>
+    </div>
+  </div>
+
+  <div id="modal-privacy" class="modal-backdrop">
+    <div class="modal-card">
+      <h3>Privacy note</h3>
+      <p>Your device selection is used to move through this page. It is not sent when you tap Submit.</p>
+      <button type="button" class="modal-close">Close</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: PLAYCASH REWARDS PAGE -->
+  <div id="step-rewards" class="pc-page overflow-x-hidden">
+    <!-- Progress Bar -->
+    <div class="sticky top-0 z-40 border-b border-white/10 bg-[#150829]/80 backdrop-blur-md">
+      <div class="mx-auto flex max-w-md items-center gap-3 px-4 py-2.5">
+        <span class="pc-display whitespace-nowrap text-[11px] font-semibold tracking-wide text-white/70">
+          PLAYCASH REWARDS
+        </span>
+        <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+          <div class="pc-progress-fill h-full w-1/2 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative mx-auto max-w-md px-5 pb-12 pt-9 text-center sm:pb-16 sm:pt-14">
+      <div class="pc-coin left-0 top-24 opacity-90" style="width:54px; height:54px;"><span class="pc-display font-extrabold text-[#7c4a03] text-xl">$</span></div>
+      <div class="pc-coin pc-coin--slow right-2 top-10 opacity-80" style="width:30px; height:30px;"><span class="pc-display font-extrabold text-[#7c4a03] text-xs">$</span></div>
+      <div class="pc-coin right-0 top-48 opacity-70" style="width:38px; height:38px;"><span class="pc-display font-extrabold text-[#7c4a03] text-sm">$</span></div>
+      <div class="pc-coin pc-coin--slow left-4 bottom-24 opacity-70" style="width:24px; height:24px;"><span class="pc-display font-extrabold text-[#7c4a03] text-[10px]">$</span></div>
+
+      <div class="pc-fade-in mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/80">
+        <span class="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400"></span>
+        2.4M+ players earning right now
+      </div>
+
+      <h1 class="pc-display pc-fade-in text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl text-white">
+        Turn Your <span class="pc-gradient-text">Free Time</span> Into Rewards
+      </h1>
+
+      <p class="pc-fade-in mx-auto mt-4 max-w-sm text-base leading-relaxed text-white/70">
+        Play games, complete offers, and unlock rewards from your phone.
+      </p>
+
+      <p class="pc-fade-in mt-6 text-xs text-white/50">
+        Free to download · No credit card needed
+      </p>
+
+      <!-- Phone mockup -->
+      <div class="pc-fade-in relative mx-auto mt-10 w-56 sm:mt-14">
+        <div class="pc-coin -right-6 top-6 z-10" style="width:26px; height:26px;"><span class="pc-display font-extrabold text-[#7c4a03] text-[11px]">$</span></div>
+        <div class="pc-coin pc-coin--slow -left-5 bottom-10 z-10" style="width:20px; height:20px;"><span class="pc-display font-extrabold text-[#7c4a03] text-[9px]">$</span></div>
+        <div class="pc-glass rounded-[2.2rem] p-2 shadow-2xl shadow-fuchsia-500/20">
+          <div class="rounded-[1.8rem] bg-gradient-to-b from-[#2a1052] to-[#150829] p-4 pb-6">
+            <div class="mx-auto mb-3 h-1.5 w-14 rounded-full bg-white/20"></div>
+            <div class="pc-display flex items-baseline justify-between px-1">
+              <span class="text-xs font-semibold text-white/60">Your coins</span>
+              <span class="text-xs font-semibold text-amber-300">+$12.40</span>
+            </div>
+            <div class="pc-display mt-1 px-1 text-3xl font-extrabold text-white">
+              2,480 <span class="text-base">🪙</span>
+            </div>
+            <div class="mt-4 space-y-2">
+              <div class="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">🎮</span>
+                  <span class="text-xs font-medium text-white/80">Merge Match</span>
+                </div>
+                <span class="text-xs font-semibold text-amber-300">+240 🪙</span>
+              </div>
+              <div class="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">📺</span>
+                  <span class="text-xs font-medium text-white/80">Watch & Earn</span>
+                </div>
+                <span class="text-xs font-semibold text-amber-300">+90 🪙</span>
+              </div>
+              <div class="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">🎯</span>
+                  <span class="text-xs font-medium text-white/80">Daily Offer</span>
+                </div>
+                <span class="text-xs font-semibold text-amber-300">+310 🪙</span>
+              </div>
+            </div>
+            <div class="pc-display mt-4 rounded-xl bg-gradient-to-r from-pink-500 to-violet-500 py-2.5 text-center text-xs font-bold text-white">
+              Cash Out Now
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TRUST SECTION -->
+    <section class="mx-auto max-w-md px-5 pb-14 sm:pb-20">
+      <div class="pc-reveal pc-glass rounded-3xl p-6 text-center">
+        <p class="pc-display text-sm font-semibold text-white/90">
+          Real rewards, real payouts
+        </p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+          <span class="pc-display inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold text-white/85">🅿️ PayPal</span>
+          <span class="pc-display inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold text-white/85">🎁 Amazon Gift Cards</span>
+          <span class="pc-display inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold text-white/85">Apple Gift Cards</span>
+          <span class="pc-display inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold text-white/85">💳 Visa Gift Cards</span>
+          <span class="pc-display inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-semibold text-white/85">₿ Crypto</span>
+        </div>
+        <p class="mt-4 text-xs leading-relaxed text-white/55">
+          Millions in rewards paid out to players worldwide.
+        </p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="mx-auto max-w-md px-5 pb-14 sm:pb-20">
+      <div class="pc-reveal">
+        <h2 class="pc-display text-center text-2xl font-bold text-white">
+          How It <span class="pc-gradient-text">Works</span>
+        </h2>
+      </div>
+      <div class="mt-8 space-y-4">
+        <div class="pc-reveal pc-glass relative flex items-start gap-4 rounded-3xl p-5">
+          <div class="pc-display flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-violet-500 text-lg font-extrabold text-white shadow-lg shadow-fuchsia-500/30">1</div>
+          <div>
+            <h3 class="pc-display text-base font-bold text-white">
+              <span class="mr-1.5" aria-hidden="true">📲</span>Download the app
+            </h3>
+            <p class="mt-1 text-sm leading-relaxed text-white/60">Grab PlayCash free from the app store and set up your profile in seconds.</p>
+          </div>
+          <div class="absolute -bottom-4 left-10 h-4 w-px bg-white/15" aria-hidden="true"></div>
+        </div>
+
+        <div class="pc-reveal pc-glass relative flex items-start gap-4 rounded-3xl p-5">
+          <div class="pc-display flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-violet-500 text-lg font-extrabold text-white shadow-lg shadow-fuchsia-500/30">2</div>
+          <div>
+            <h3 class="pc-display text-base font-bold text-white">
+              <span class="mr-1.5" aria-hidden="true">🎮</span>Complete games & offers
+            </h3>
+            <p class="mt-1 text-sm leading-relaxed text-white/60">Play new games, try offers, and watch your coins stack up every day.</p>
+          </div>
+          <div class="absolute -bottom-4 left-10 h-4 w-px bg-white/15" aria-hidden="true"></div>
+        </div>
+
+        <div class="pc-reveal pc-glass relative flex items-start gap-4 rounded-3xl p-5">
+          <div class="pc-display flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-violet-500 text-lg font-extrabold text-white shadow-lg shadow-fuchsia-500/30">3</div>
+          <div>
+            <h3 class="pc-display text-base font-bold text-white">
+              <span class="mr-1.5" aria-hidden="true">🏆</span>Redeem rewards
+            </h3>
+            <p class="mt-1 text-sm leading-relaxed text-white/60">Cash out your coins for gift cards, PayPal money, crypto, and more.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF / REVIEWS -->
+    <section class="mx-auto max-w-md px-5 pb-14 sm:pb-20">
+      <div class="pc-reveal">
+        <h2 class="pc-display text-center text-2xl font-bold text-white">
+          Players Are <span class="pc-gradient-text">Cashing Out</span>
+        </h2>
+      </div>
+
+      <div class="mt-8 space-y-4">
+        <div class="pc-reveal pc-glass rounded-3xl p-5">
+          <div class="flex items-center gap-3">
+            <div class="pc-display flex h-10 w-10 items-center justify-center rounded-full text-sm font-extrabold text-white" style="background: linear-gradient(135deg, #ff5fa2, #7c3aed);">J</div>
+            <div>
+              <p class="pc-display text-sm font-bold text-white">Jasmine</p>
+              <p class="text-xs text-amber-300" aria-label="5 out of 5 stars">★★★★★</p>
+            </div>
+            <span class="pc-display ml-auto rounded-full bg-emerald-400/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-300">✓ $32 PayPal payout</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-white/70">"Cashout hit my PayPal in under 24 hours. I earn while watching Netflix, no joke."</p>
+        </div>
+
+        <div class="pc-reveal pc-glass rounded-3xl p-5">
+          <div class="flex items-center gap-3">
+            <div class="pc-display flex h-10 w-10 items-center justify-center rounded-full text-sm font-extrabold text-white" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">M</div>
+            <div>
+              <p class="pc-display text-sm font-bold text-white">Marcus</p>
+              <p class="text-xs text-amber-300" aria-label="5 out of 5 stars">★★★★★</p>
+            </div>
+            <span class="pc-display ml-auto rounded-full bg-emerald-400/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-300">✓ $50 Amazon card</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-white/70">"The games are actually fun, not boring grind tasks. Already redeemed 3 gift cards."</p>
+        </div>
+
+        <div class="pc-reveal pc-glass rounded-3xl p-5">
+          <div class="flex items-center gap-3">
+            <div class="pc-display flex h-10 w-10 items-center justify-center rounded-full text-sm font-extrabold text-white" style="background: linear-gradient(135deg, #22d3ee, #7c3aed);">S</div>
+            <div>
+              <p class="pc-display text-sm font-bold text-white">Sofia</p>
+              <p class="text-xs text-amber-300" aria-label="5 out of 5 stars">★★★★★</p>
+            </div>
+            <span class="pc-display ml-auto rounded-full bg-emerald-400/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-300">✓ $25 Visa gift card</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-white/70">"Made my first payout the same week I downloaded it. Super easy to use."</p>
+        </div>
+      </div>
+
+      <!-- Payout screenshots -->
+      <div class="mt-6 grid grid-cols-2 gap-3">
+        <div class="pc-reveal pc-glass rounded-2xl p-4">
+          <p class="text-[11px] font-medium uppercase tracking-wide text-white/50">Payout screenshot</p>
+          <div class="mt-2 rounded-xl bg-white/5 p-3">
+            <p class="pc-display text-[11px] text-white/50">PayPal</p>
+            <p class="pc-display mt-0.5 text-xl font-extrabold text-emerald-300">$32.00</p>
+            <p class="mt-1 flex items-center gap-1 text-[11px] text-white/45">
+              <span class="text-emerald-400">✓</span> Paid today
+            </p>
+          </div>
+        </div>
+
+        <div class="pc-reveal pc-glass rounded-2xl p-4">
+          <p class="text-[11px] font-medium uppercase tracking-wide text-white/50">Payout screenshot</p>
+          <div class="mt-2 rounded-xl bg-white/5 p-3">
+            <p class="pc-display text-[11px] text-white/50">Amazon</p>
+            <p class="pc-display mt-0.5 text-xl font-extrabold text-emerald-300">$50.00</p>
+            <p class="mt-1 flex items-center gap-1 text-[11px] text-white/45">
+              <span class="text-emerald-400">✓</span> Paid 2 days ago
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="pc-faq mx-auto max-w-md px-5 pb-14 sm:pb-20">
+      <div class="pc-reveal">
+        <h2 class="pc-display text-center text-2xl font-bold text-white">
+          Quick <span class="pc-gradient-text">Answers</span>
+        </h2>
+      </div>
+      <div class="mt-8 space-y-3">
+        <div class="pc-reveal">
+          <details class="pc-glass group rounded-2xl px-5 py-4">
+            <summary class="pc-display flex items-center justify-between gap-4 text-sm font-semibold text-white">
+              Is PlayCash free to use?
+              <svg class="pc-chevron h-4 w-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-white/60">Yes — PlayCash is 100% free to download and use. You never pay anything; you earn by playing games and completing offers.</p>
+          </details>
+        </div>
+
+        <div class="pc-reveal">
+          <details class="pc-glass group rounded-2xl px-5 py-4">
+            <summary class="pc-display flex items-center justify-between gap-4 text-sm font-semibold text-white">
+              How do I get paid?
+              <svg class="pc-chevron h-4 w-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-white/60">Redeem your coins for PayPal cash, Amazon, Apple, or Visa gift cards, or crypto. Most payouts are processed quickly after you request them.</p>
+          </details>
+        </div>
+
+        <div class="pc-reveal">
+          <details class="pc-glass group rounded-2xl px-5 py-4">
+            <summary class="pc-display flex items-center justify-between gap-4 text-sm font-semibold text-white">
+              How much can I earn?
+              <svg class="pc-chevron h-4 w-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-white/60">It depends on how many games and offers you complete. Casual users earn gift money in their spare time; heavy users earn more.</p>
+          </details>
+        </div>
+
+        <div class="pc-reveal">
+          <details class="pc-glass group rounded-2xl px-5 py-4">
+            <summary class="pc-display flex items-center justify-between gap-4 text-sm font-semibold text-white">
+              Do I need to share personal info?
+              <svg class="pc-chevron h-4 w-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-white/60">You only share what's needed for your payout method. Rewards depend on available offers and eligibility.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA SECTION (ONLY ONE PRIMARY CTA ON PAGE) -->
+    <section id="final-cta" class="relative mx-auto max-w-md px-5 pb-16 pt-4 text-center sm:pb-24">
+      <div class="pc-coin pc-coin--slow left-2 top-2 opacity-80" style="width:40px; height:40px;"><span class="pc-display font-extrabold text-[#7c4a03] text-base">$</span></div>
+      <div class="pc-coin right-3 top-16 opacity-70" style="width:26px; height:26px;"><span class="pc-display font-extrabold text-[#7c4a03] text-[11px]">$</span></div>
+
+      <div class="pc-reveal">
+        <div class="pc-glass rounded-[2rem] p-8">
+          <p class="text-3xl" aria-hidden="true">🪙</p>
+          <h2 class="pc-display mt-3 text-2xl font-extrabold leading-tight text-white">
+            Ready to earn your <span class="pc-gradient-text">first reward?</span>
+          </h2>
+          <p class="mt-3 text-sm leading-relaxed text-white/65">
+            You're one step away. Continue to PlayCash and start stacking coins today.
+          </p>
+          <a
+            href="https://giftclick.org/aff_c?offer_id=2691&aff_id=181327&utm_source=__CAMPAIGN_NAME__&utm_medium=__AID_NAME__&utm_campaign=__CID_NAME__"
+            rel="sponsored nofollow noopener"
+            class="pc-btn-glow pc-display mt-6 inline-flex min-h-14 w-full items-center justify-center whitespace-nowrap rounded-2xl px-4 py-4 text-lg font-extrabold text-white"
+          >
+            Continue to PlayCash <span class="ml-2" aria-hidden="true">→</span>
+          </a>
+          <p class="mt-4 text-[11px] text-white/40">Continue to PlayCash · Takes less than a minute</p>
+        </div>
+      </div>
+
+      <p class="mt-8 px-4 text-[11px] leading-relaxed text-white/35">
+        Rewards depend on available offers and eligibility.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    (function() {
+      var selectedDevice = null;
+
+      var stepDevice = document.getElementById('step-device');
+      var stepQualified = document.getElementById('step-qualified');
+      var stepRewards = document.getElementById('step-rewards');
+
+      var optionBtns = document.querySelectorAll('.qual-option');
+      var submitBtn = document.getElementById('btn-submit-device');
+      var getStartedBtn = document.getElementById('btn-get-started');
+      var backQualifiedBtn = document.getElementById('btn-back-qualified');
+      var closeDeviceBtn = document.getElementById('btn-close-device');
+
+      var modalInfo = document.getElementById('modal-info');
+      var modalPrivacy = document.getElementById('modal-privacy');
+      var btnInfo = document.getElementById('btn-info');
+      var btnPrivacy = document.getElementById('btn-privacy');
+      var closeModals = document.querySelectorAll('.modal-close');
+
+      // Selection logic
+      optionBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          optionBtns.forEach(function(b) {
+            b.classList.remove('selected');
+            b.setAttribute('aria-checked', 'false');
+          });
+          btn.classList.add('selected');
+          btn.setAttribute('aria-checked', 'true');
+          selectedDevice = btn.getAttribute('data-device');
+          submitBtn.removeAttribute('disabled');
+        });
+      });
+
+      // Navigation
+      function showStage(stage) {
+        stepDevice.style.display = 'none';
+        stepQualified.style.display = 'none';
+        stepRewards.style.display = 'none';
+
+        if (stage === 'device') {
+          stepDevice.style.display = 'block';
+        } else if (stage === 'qualified') {
+          stepQualified.style.display = 'block';
+        } else if (stage === 'rewards') {
+          stepRewards.style.display = 'block';
+          triggerReveals();
+        }
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+
+      submitBtn.addEventListener('click', function() {
+        if (selectedDevice) {
+          showStage('qualified');
+        }
+      });
+
+      getStartedBtn.addEventListener('click', function() {
+        showStage('rewards');
+      });
+
+      backQualifiedBtn.addEventListener('click', function() {
+        showStage('device');
+      });
+
+      closeDeviceBtn.addEventListener('click', function() {
+        showStage('rewards');
+      });
+
+      // Modals
+      btnInfo.addEventListener('click', function() {
+        modalInfo.classList.add('active');
+      });
+      btnPrivacy.addEventListener('click', function() {
+        modalPrivacy.classList.add('active');
+      });
+      closeModals.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          modalInfo.classList.remove('active');
+          modalPrivacy.classList.remove('active');
+        });
+      });
+      [modalInfo, modalPrivacy].forEach(function(m) {
+        m.addEventListener('click', function(e) {
+          if (e.target === m) {
+            m.classList.remove('active');
+          }
+        });
+      });
+
+      // Scroll reveals for rewards page
+      function triggerReveals() {
+        var reveals = document.querySelectorAll('.pc-reveal');
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('pc-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1 });
+          reveals.forEach(function(r) {
+            observer.observe(r);
+          });
+        } else {
+          reveals.forEach(function(r) {
+            r.classList.add('pc-visible');
+          });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
